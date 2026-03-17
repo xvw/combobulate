@@ -189,16 +189,10 @@
          ;; ask Combobulate to give you all the node types that can appear in it:
 
          (:activation-nodes
-          ((:nodes ("tag_specification")))
+          ((:nodes ("tag_specification" "match_case")))
           :selector
           (:choose node
           :match-siblings t))
-
-         (:activation-nodes
-          ((:nodes ("match_case")))
-          :selector
-          (:choose node
-          :match-siblings (:discard-rules ("value_path"))))
 
          (:activation-nodes
           ((:nodes ("value_definition" "application_expression" "let_expression")
