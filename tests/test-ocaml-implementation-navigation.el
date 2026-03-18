@@ -1761,7 +1761,7 @@ matching for OCaml can be resolved."
       (expected-node-type "val" "4"))
 
      (combobulate-step
-      "move to return"
+      "move to bind"
       (combobulate-navigate-down)
       (expected-node-type "value_name" "5"))
 
@@ -1774,8 +1774,7 @@ matching for OCaml can be resolved."
       "move to t"
       (combobulate-navigate-down)
       (expected-node-type "type_constructor" "7"))
-
-      ;; [BUG] combobulate next should go to the next segment of this value signature
+      ;; [DECISION] should combobulate next should go to the next segment of this value signature or should navigate function types as parent-child relationships
      (combobulate-step
       "move to ("
       (combobulate-navigate-next)

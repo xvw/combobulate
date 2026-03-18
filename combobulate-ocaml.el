@@ -190,7 +190,7 @@
 
          (:activation-nodes
           ((:nodes (
-            "variant_declaration" "record_declaration" "list_expression" "cons_expression" "field_get_expression") (:nodes ((rule "function_type")))))
+            "variant_declaration" "record_declaration" "list_expression" "cons_expression" "field_get_expression" "function_type")))
           :selector (:choose node :match-children t))
 
          (:activation-nodes
