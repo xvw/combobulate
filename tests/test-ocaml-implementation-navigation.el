@@ -2415,7 +2415,6 @@ matching for OCaml can be resolved."
       (combobulate-navigate-down) 
       (expected-node-type "number" "3.1")
       (expected-symbol-at-point "1" "3.2")) 
-      ;; [BUG] navigate next should move to the next element in the list but it does not. The expected node type is correct but the cursor moves to the next let statement
     (combobulate-step "move to second element in the list: 2" 
       (combobulate-navigate-next) 
       (expected-node-type "number" "4.1")
@@ -3080,14 +3079,13 @@ matching for OCaml can be resolved."
      (combobulate-step "move to the sibling q.back"
       (combobulate-navigate-next)
       (expected-node-type "value_name" "9"))
-      ;; [DECISION] Treesitter places q and back as siblings. but intuitively someone may want to navigate to back as a child of q since it's accessed through q. 
+      ;; [DECISION] Treesitter places q and back as siblings. but intuitively someone may want to navigate to back as a child of q since it's accessed through q. for now, both sibling and hierarchy will work.
      (combobulate-step "move to back"
       (combobulate-navigate-down)
       (expected-node-type "field_name" "10"))
      (combobulate-step "move to back to q in q.back"
       (combobulate-navigate-up)
       (expected-node-type "value_name" "11"))
-      ;; [BUG] we should also use sibling navigation to go back to x but this doesnt work either but will work if we do it as though it's a parent
      (combobulate-step "move to back to x"
       (combobulate-navigate-previous)
       (expected-node-type "value_name" "12"))
