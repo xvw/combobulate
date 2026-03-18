@@ -189,12 +189,6 @@
          ;; ask Combobulate to give you all the node types that can appear in it:
 
          (:activation-nodes
-          ((:nodes ("tag_specification" "match_case")))
-          :selector
-          (:choose node
-          :match-siblings t))
-
-         (:activation-nodes
           ((:nodes ("value_definition" "application_expression" "let_expression")
             :has-parent ("let_expression")))
           :selector
@@ -202,7 +196,7 @@
           :match-children t))
 
           (:activation-nodes
-          ((:nodes ("parameter" "value_path" "add_operator" "mult_operator" "pow_operator" "rel_oparator" "concat_oparator" "or_oparator" "and_operator" "assign_operator" "infix_expression" "type_constructor_path" "field_declaration")))
+          ((:nodes ("parameter" "value_path" "add_operator" "mult_operator" "pow_operator" "rel_oparator" "concat_oparator" "or_oparator" "and_operator" "assign_operator" "infix_expression" "type_constructor_path" "field_declaration" "tag_specification" "match_case" "field_expression")))
           :selector
           (:choose node
           :match-siblings t))
@@ -228,6 +222,7 @@
             "attribute" "field_declaration" "function_expression"
             (rule "function_type")
             (rule "attribute_payload")
+            (rule "record_expression")
             (rule "object_expression")
             (rule "constructor_declaration")
             (rule "class_binding")

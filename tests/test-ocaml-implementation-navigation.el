@@ -3004,7 +3004,6 @@ matching for OCaml can be resolved."
      (back-to-indentation)
      (combobulate-step "be on front"
       (expected-node-type "field_name" "1"))
-      ;; [BUG] this should navigate to the type variable 'a
      (combobulate-step "navigate to the body of front"
       (combobulate-navigate-down)
       (expected-node-type "type_variable" "2"))
@@ -3038,7 +3037,6 @@ matching for OCaml can be resolved."
      (combobulate-step "move back to front"
       (combobulate-navigate-up)
       (expected-node-type "field_name" "6"))
-      ;; [BUG] this should navigate to the sibling back
      (combobulate-step "move to the sibling of front: back"
       (combobulate-navigate-next)
       (expected-node-type "field_name" "7"))
