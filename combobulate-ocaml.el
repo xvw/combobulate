@@ -201,11 +201,9 @@
           :match-children t))
 
           (:activation-nodes
-          ((:nodes ("parameter" "value_path" "add_operator" "mult_operator" "pow_operator" "rel_oparator" "concat_oparator" "or_oparator" "and_operator" "assign_operator" "infix_expression" "type_constructor_path" "field_declaration" "tag_specification" "match_case" "field_expression"))
+          ((:nodes ("type_variable" "parameter" "value_path" "add_operator" "mult_operator" "pow_operator" "rel_oparator" "concat_oparator" "or_oparator" "and_operator" "assign_operator" "infix_expression" "type_constructor_path" "field_declaration" "tag_specification" "match_case" "field_expression"))
           (:nodes ((rule "signature") (rule "structure")) 
-            :has-ancestor ("module_definition"))
-            (:nodes (
-            "signature" "structure" "module_name") :has-ancestor ("module_definition")))
+            :has-ancestor ("module_definition")))
           :selector
           (:choose node
           :match-siblings t))

@@ -3114,7 +3114,6 @@ matching for OCaml can be resolved."
      (combobulate-step "move to 'k"
       (combobulate-navigate-down)
       (expected-node-type "type_variable" "4"))
-      ;; [BUG] navigate next should move to 'v instead of the next let
      (combobulate-step "move to 'v"
       (combobulate-navigate-next)
       (expected-node-type "type_variable" "5"))
