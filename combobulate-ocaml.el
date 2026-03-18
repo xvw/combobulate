@@ -313,6 +313,7 @@
             (:nodes ("signature" "structure" "module_name" "module_path") :has-ancestor ("module_definition" "module_type_definition" "package_expression"))
             (:nodes (
             (rule "module_definition")
+            (rule "record_declaration")
             (rule "attribute_payload")
             (rule "function_type")
             (irule "function_type")
