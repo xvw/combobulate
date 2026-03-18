@@ -2879,7 +2879,7 @@ matching for OCaml can be resolved."
       (combobulate-navigate-next)
       (combobulate-navigate-next)
       (expected-node-type "match" "4"))
-      ;; Tricky point, to move to the body should take us to the match cases, but then how do we move to the parameters of the match statement. the next step should fail as this doesnt go to the parameters
+      ;; [DECISION] Tricky point, to move to the body should take us to the match cases, but then how do we move to the parameters of the match statement. the next step should fail as this doesnt go to the parameters
      (combobulate-step "move to the match parameters"
       (combobulate-navigate-down)
       (expected-node-type "value_name" "5"))
@@ -2937,6 +2937,8 @@ matching for OCaml can be resolved."
      (combobulate-step "be on module"
       (expected-node-type "module" "1"))
      (combobulate-step "move to the body"
+       (combobulate-navigate-down)
+       (combobulate-navigate-down)
        (combobulate-navigate-down)
        (expected-node-type "type" "2"))
      (combobulate-step "move to 'a"
