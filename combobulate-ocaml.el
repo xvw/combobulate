@@ -30,10 +30,10 @@
 (require 'combobulate-manipulation)
 (require 'combobulate-rules)
 
-(defmacro combobulate-step (name &rest body) "Wrap BODY as a test step named NAME. If failure occurs, the step name is included in the failure report." (declare (indent 1)) `(condition-case err (progn ,@body) 
-  (ert-test-failed 
-    (signal (car err) 
-      (append (cdr err) (list :step ,name)))))) 
+(defmacro combobulate-step (name &rest body) "Wrap BODY as a test step named NAME. If failure occurs, the step name is included in the failure report." (declare (indent 1)) `(condition-case err (progn ,@body)
+  (ert-test-failed
+    (signal (car err)
+      (append (cdr err) (list :step ,name))))))
 
 (defgroup combobulate-ocaml nil
   "Configuration switches for OCaml"
@@ -189,6 +189,14 @@
          ;; ask Combobulate to give you all the node types that can appear in it:
 
          (:activation-nodes
+          ((:nodes ("parameter") :has-parent ("let_binding")))
+          :selector (:choose node :match-siblings t))
+
+         (:activation-nodes
+          ((:nodes ("instance_variable_name") :has-parent ("set_expression")))
+          :selector (:choose node :match-siblings t))
+
+         (:activation-nodes
           ((:nodes (
             "variant_declaration" "record_declaration" "list_expression" "cons_expression" "field_get_expression" "function_type")))
           :selector (:choose node :match-children t))
@@ -202,7 +210,7 @@
 
           (:activation-nodes
           ((:nodes ("type_variable" "parameter" "value_path" "add_operator" "mult_operator" "pow_operator" "rel_oparator" "concat_oparator" "or_oparator" "and_operator" "assign_operator" "infix_expression" "type_constructor_path" "field_declaration" "tag_specification" "match_case" "field_expression"))
-          (:nodes ((rule "signature") (rule "structure")) 
+          (:nodes ((rule "signature") (rule "structure"))
             :has-ancestor ("module_definition")))
           :selector
           (:choose node
@@ -287,6 +295,21 @@
          ((:nodes ("object_expression" (rule "class_definition") (rule "object_expression") (rule "class_binding"))))
          :selector (:choose node
                             :match-children (:discard-rules ("tag_specification"))))
+
+        (:activation-nodes
+         ((:nodes ("constructor_name")
+                  :has-parent ("constructor_declaration")))
+         :selector
+         (:choose parent
+                  :match-children
+                  (:nodes ("type_constructor_path"))))
+
+        (:activation-nodes
+         ((:nodes ("type_constructor_path")))
+         :selector
+         (:choose node
+                  :match-children
+                  (:nodes ("type_constructor"))))
 
         ;; Catch-all for structural nodes - match all their children
         (:activation-nodes
